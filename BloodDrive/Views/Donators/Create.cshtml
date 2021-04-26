@@ -1,0 +1,76 @@
+﻿@model BloodDrive.Models.ViewModels.CreateDonatorVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Donator</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.FirstName" class="control-label">First Name</label>
+                <input asp-for="@Model.donator.FirstName" class="form-control" />
+                <span asp-validation-for="@Model.donator.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.LastName" class="control-label">Last Name</label>
+                <input asp-for="@Model.donator.LastName" class="form-control" />
+                <span asp-validation-for="@Model.donator.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.Sex" class="control-label">Sex</label>
+                <input asp-for="@Model.donator.Sex" class="form-control" />
+                <span asp-validation-for="@Model.donator.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.Email" class="control-label">Email</label>
+                <input asp-for="@Model.donator.Email" class="form-control" />
+                <span asp-validation-for="@Model.donator.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="@Model.donator.PhoneNumber" class="form-control" />
+                <span asp-validation-for="@Model.donator.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.State" class="control-label">State</label>
+                <input asp-for="@Model.donator.State" class="form-control" />
+                <span asp-validation-for="@Model.donator.State" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="@Model.donator.Elligible" /> @Html.DisplayNameFor(model => model.donator.Elligible)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.donator.BloodTypeID" class="control-label">BloodType</label>
+                <select asp-for="@Model.donator.BloodTypeID" class="form-control">
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">AB+</option>
+                    <option value="6">AB-</option>
+                    <option value="7">O+</option>
+                    <option value="8">O-</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

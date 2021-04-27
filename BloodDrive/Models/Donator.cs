@@ -27,7 +27,7 @@ namespace BloodDrive.Models
         [Required]
         public int BloodTypeID { get; set; }
         public virtual BloodType BloodType { get; set; }
-        
 
+        public List<Record> Records { get; set; } = new List<Record>();
     }
 }

@@ -13,5 +13,6 @@ namespace BloodDrive.Models
         //Navigation Properties
         public int DonatorID { get; set; }
         public Donator donator { get; set; }
+
     }
 }

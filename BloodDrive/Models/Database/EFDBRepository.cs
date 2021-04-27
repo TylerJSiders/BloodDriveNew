@@ -20,6 +20,28 @@ namespace BloodDrive.Models.Database
             await context.SaveChangesAsync();
         }
 
+        public async Task<int> AddRecordAsync(Record record)
+        {
+            Record newRecord = new Record();
+            newRecord.DateDonated = record.DateDonated;
+            newRecord.DonatorID = record.DonatorID;
+           
+            context.Entry(newRecord).State = EntityState.Added;
+            return await context.SaveChangesAsync();
+            
+            
+        }
+
+        public int AddRecord(Record record)
+        {
+            //Record newRecord = new Record();
+            //newRecord.DateDonated = record.DateDonated;
+            //newRecord.DonatorID = record.DonatorID;
+            context.Add(record);
+            //context.Entry(newRecord).State = EntityState.Added;
+            return context.SaveChanges();
+        }
+
         public async Task DeleteDonator(int id)
         {
             context.Donators.Remove(await context.Donators.FindAsync(id));
@@ -42,6 +64,13 @@ namespace BloodDrive.Models.Database
         public async Task<Donator> GetDonator(int? id)
         {
             var donator = await context.Donators.Where(d => d.ID == id).Include(d => d.BloodType).FirstOrDefaultAsync();
+            donator.Records = context.Records.Where(f => f.DonatorID == id).ToList();
+            return donator;
+        }
+
+        public Donator GetDonatorNAsync(int? id)
+        {
+            var donator = context.Donators.Where(d => d.ID == id).Include(d => d.BloodType).FirstOrDefault();
             return donator;
         }
 

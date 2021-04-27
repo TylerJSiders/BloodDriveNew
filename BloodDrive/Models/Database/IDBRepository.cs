@@ -15,5 +15,8 @@ namespace BloodDrive.Models.Database
         public bool DonatorExists(int? id);
         public Task<Donator> GetDonator(int? id);
         public Task UpdateDonator(Donator donator);
+        public Donator GetDonatorNAsync(int? id);
+        public Task<int> AddRecordAsync(Record record);
+        public int AddRecord(Record record);
     }
 }

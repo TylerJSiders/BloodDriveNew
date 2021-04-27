@@ -14,5 +14,6 @@ namespace BloodDrive.Models.Database
         }
         public DbSet<Donator> Donators { get; set; }
         public DbSet<BloodType> BloodTypes { get; set; }
+        public DbSet<Record> Records { get; set; }
     }
 }

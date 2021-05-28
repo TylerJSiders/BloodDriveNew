@@ -26,6 +26,14 @@ namespace BloodDrive.Controllers
         {
             if (!_context.DonatorExists(DonatorID))
                 return NotFound();
+            if (DonatorID.HasValue)
+            {
+                if (!_context.DonatorIsElligible((int)DonatorID))
+                {
+                    return RedirectToAction("Details", "Donators", (int)DonatorID);
+                }
+            }
+            
             Record vm = new Record();
             ViewBag.Donator = _context.GetDonatorNAsync(DonatorID);
             return View(vm);
@@ -36,9 +44,13 @@ namespace BloodDrive.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Record record)
         {
+            //if (!_context.DonatorIsElligible(record.DonatorID))
+            //{
+            //    return NotFound();
+            //}
 
             record.donator = _context.GetDonatorNAsync(record.DonatorID);
-            var x = _context.AddRecord(record);
+            _context.AddRecord(record);
             return RedirectToAction("Index", "Donators");
         }
 

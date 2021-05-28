@@ -12,7 +12,7 @@ namespace BloodDrive.Models.ViewModels
         public List<BloodType> bloodTypes { get; set; }
         public CreateDonatorVM()
         {
-            donator = new Donator();
+            donator = new();
         }
         public CreateDonatorVM(IDBRepository repo)
         {

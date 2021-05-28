@@ -7,6 +7,7 @@ namespace BloodDrive.Models.Database
 {
     public interface IDBRepository
     {
+        public bool DonatorIsElligible(int id);
         public Task<List<Donator>> GetDonators();
         public List<BloodType> GetListOfBloodTypes();
         public Task AddDonator(Donator donator);
@@ -17,6 +18,8 @@ namespace BloodDrive.Models.Database
         public Task UpdateDonator(Donator donator);
         public Donator GetDonatorNAsync(int? id);
         public Task<int> AddRecordAsync(Record record);
-        public int AddRecord(Record record);
+        public void AddRecord(Record record);
+
+        public int DonorCount();
     }
 }

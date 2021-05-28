@@ -32,14 +32,11 @@ namespace BloodDrive.Models.Database
             
         }
 
-        public int AddRecord(Record record)
+        public void AddRecord(Record record)
         {
-            //Record newRecord = new Record();
-            //newRecord.DateDonated = record.DateDonated;
-            //newRecord.DonatorID = record.DonatorID;
             context.Add(record);
-            //context.Entry(newRecord).State = EntityState.Added;
-            return context.SaveChanges();
+            record.donator.Elligible = false;
+            context.SaveChanges();
         }
 
         public async Task DeleteDonator(int id)
@@ -89,6 +86,20 @@ namespace BloodDrive.Models.Database
         {
             context.Donators.Update(donator);
             await context.SaveChangesAsync();
+        }
+
+        public bool DonatorIsElligible(int id)
+        {
+            var donator = context.Donators.Find(id);
+            if (donator.Elligible)
+                return true;
+            return false;
+        }
+
+
+        public int DonorCount()
+        {
+            return context.Donators.Count();
         }
     }
 }
